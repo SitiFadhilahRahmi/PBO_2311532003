@@ -1,13 +1,13 @@
 package model;
 
 public class Services {
-	String Id, jenis, status;
-	Double harga, satuan;
+	String id, jenis, status;
+	Double harga;
 	public String getId() {
-		return Id;
+		return id;
 	}
 	public void setId(String id) {
-		Id = id;
+		id = id;
 	}
 	public String getJenis() {
 		return jenis;
@@ -27,13 +27,5 @@ public class Services {
 	public void setHarga(Double harga) {
 		this.harga = harga;
 	}
-	public Double getSatuan() {
-		return satuan;
-	}
-	public void setSatuan(Double satuan) {
-		this.satuan = satuan;
-	}
-	
-	
 	
 }

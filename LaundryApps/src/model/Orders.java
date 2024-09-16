@@ -1,13 +1,13 @@
 package model;
 
 public class Orders {
-	String Id, tgl_order, tgl_selesai, sts_bayar, sts_pesanan;
-	Double TotalHarga;
+	String id, tgl_order, tgl_selesai, sts_bayar, sts_pesanan;
+	Double totalHarga;
 	public String getId() {
-		return Id;
+		return id;
 	}
 	public void setId(String id) {
-		Id = id;
+		id = id;
 	}
 	public String getTgl_order() {
 		return tgl_order;
@@ -34,10 +34,10 @@ public class Orders {
 		this.sts_pesanan = sts_pesanan;
 	}
 	public Double getTotalHarga() {
-		return TotalHarga;
+		return totalHarga;
 	}
 	public void setTotalHarga(Double totalHarga) {
-		TotalHarga = totalHarga;
+		totalHarga = totalHarga;
 	}
 	
 	
