@@ -7,7 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import error.ValidationException;
 import model.User;
+import service.LoginService;
+import util.ValidationUtil;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -74,20 +77,30 @@ public class LoginFrame extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(User.login(txtUsername.getText(),txtPassword.getText())) {
-				//	JOptionPane.showMessageDialog(null, "Anda berhasil Login");
-					//cara 1 pindah ke main frame
-					//MainFrame mf= new MainFrame();
-					//mf.setVisible(true);
-					//dispose();
-					
-					//cara 2 pindah ke mainframe
-					new MainFrame().setVisible(true);
-					dispose();
-				}else {
-					JOptionPane.showMessageDialog(null, "Login gagal");
-				}
+				String userValue = txtUsername.getText();
+				String passValue = txtPassword.getText();
 				
+				User user = new User(userValue, passValue);
+				
+				try {
+					ValidationUtil.validate(user);
+					LoginService loginService = new LoginService();
+					if(LoginService.authenticate(user)) {
+						System.out.println("Login Successfull");
+						new MainFrame().setVisible(true);
+						dispose();
+					}
+					else {
+						System.out.println("Invalid username or password");
+						JOptionPane.showMessageDialog(null, "Login Gagal, Invalid username or password");
+					}
+				}catch (ValidationException | NullPointerException exception) {
+					System.out.println("Data tidak valid : "+exception.getMessage());
+					JOptionPane.showMessageDialog(null, "Login Gagal: "+exception.getMessage());
+					
+				}finally {
+					System.out.println("Selalu dieksekusi");
+				}
 			}
 		});
 		

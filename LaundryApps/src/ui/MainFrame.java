@@ -10,6 +10,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
@@ -37,7 +39,7 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 561, 362);
+		setBounds(100, 100, 723, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -48,36 +50,45 @@ public class MainFrame extends JFrame {
 		lblNewLabel.setForeground(new Color(32, 51, 117));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Agency FB", Font.BOLD, 20));
-		lblNewLabel.setBounds(220, 11, 93, 31);
+		lblNewLabel.setBounds(306, 11, 93, 31);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("PESANAN");
-		btnNewButton.setBounds(34, 65, 124, 77);
+		btnNewButton.setBounds(217, 65, 124, 77);
 		contentPane.add(btnNewButton);
 		
 		JButton btnLayanan = new JButton("LAYANAN");
-		btnLayanan.setBounds(206, 65, 124, 77);
+		btnLayanan.setBounds(366, 65, 124, 77);
 		contentPane.add(btnLayanan);
 		
 		JButton btnPelanggan = new JButton("PELANGGAN");
-		btnPelanggan.setBounds(382, 65, 124, 77);
+		btnPelanggan.setBounds(534, 65, 124, 77);
 		contentPane.add(btnPelanggan);
 		
 		JButton btnPengguna = new JButton("PENGGUNA");
-		btnPengguna.setBounds(34, 161, 124, 77);
+		btnPengguna.setBounds(121, 161, 124, 77);
 		contentPane.add(btnPengguna);
 		
 		JButton btnLaporan = new JButton("LAPORAN");
-		btnLaporan.setBounds(206, 161, 124, 77);
+		btnLaporan.setBounds(287, 161, 124, 77);
 		contentPane.add(btnLaporan);
 		
 		JButton btnProfil = new JButton("PROFIL");
-		btnProfil.setBounds(382, 161, 124, 77);
+		btnProfil.setBounds(448, 161, 124, 77);
 		contentPane.add(btnProfil);
 		
 		JButton btnNewButton_1 = new JButton("LOGOUT");
-		btnNewButton_1.setBounds(34, 268, 472, 23);
+		btnNewButton_1.setBounds(114, 316, 472, 40);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnCheckArray = new JButton("CHECK ARRAY");
+		btnCheckArray.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CheckArray().setVisible(true);
+				dispose();
+			}
+		});
+		btnCheckArray.setBounds(46, 65, 124, 77);
+		contentPane.add(btnCheckArray);
 	}
-
 }
