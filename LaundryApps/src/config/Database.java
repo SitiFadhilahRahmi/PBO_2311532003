@@ -1,23 +1,25 @@
 package config;
 
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-
-import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 public class Database {
-	Connection conn;
-	public static Connection koneksi() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/laundry_apps", "root", "");
-			return conn;
-		} catch(Exception e) {
-			JOptionPane.showMessageDialog(null, e);
-			return null;
-		}
-	}
+    private static Connection connection;
 
+    private static final String URL = "jdbc:mysql://localhost/laundry_apps";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+
+    // Singleton getConnection
+    public static Connection getConnection() {
+        if (connection == null) {
+            try {
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            } catch (SQLException e) {
+                System.err.println("Koneksi ke database gagal: " + e.getMessage());
+            }
+        }
+        return connection;
+    }
 }
-

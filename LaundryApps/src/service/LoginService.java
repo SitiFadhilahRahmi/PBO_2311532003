@@ -10,7 +10,7 @@ public class LoginService {
 	public static boolean authenticate(User user) {
 		String query = "SELECT * FROM user WHERE username = ? AND password = ?";
 		
-		try (Connection conn = Database.koneksi();
+		try (Connection conn = Database.getConnection();
 				PreparedStatement statement = conn.prepareStatement(query)){
 			statement.setString(1, user.getUsername());
 			statement.setString(2, user.getPassword());

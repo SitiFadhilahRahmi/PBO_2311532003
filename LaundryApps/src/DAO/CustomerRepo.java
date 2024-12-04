@@ -22,7 +22,7 @@ public class CustomerRepo implements CustomerDao {
 	final String update = "UPDATE customer SET name=?, phone=?, address=? WHERE id=?;";
 	
 public CustomerRepo() {
-	connection = Database.koneksi();
+	connection = Database.getConnection();
 }
 
 @Override

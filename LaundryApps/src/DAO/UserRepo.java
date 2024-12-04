@@ -19,7 +19,7 @@ public class UserRepo implements UserDao {
 	final String update = "UPDATE user SET name=?, username=?, password=? WHERE id=?;";
 	
 public UserRepo() {
-	connection = Database.koneksi();
+	connection = Database.getConnection();
 }
 
 @Override

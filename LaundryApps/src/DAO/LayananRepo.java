@@ -20,7 +20,7 @@ public class LayananRepo implements LayananDao {
 	final String update = "UPDATE layanan SET jenis=?, satuan=?, status=?, harga=? WHERE id=?;";
 	
 	public LayananRepo() {
-		connection = Database.koneksi();
+		connection = Database.getConnection();
 	}
 
 	@Override
