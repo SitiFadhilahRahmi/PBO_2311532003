@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.EventQueue;
+import model.CustomerBuilder;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -32,13 +33,10 @@ public class CustomerFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtName;
-	private JTextField txtPhone;
+	private JTextField txtEmail;
 	private JTextField txtAddress;
 	private JTable tableCustomers;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -57,6 +55,7 @@ public class CustomerFrame extends JFrame {
 	CustomerRepo cus = new CustomerRepo();
 	List<Customer> lc;
 	public String id;
+	private JTextField txtHp;
 	
 	public void loadTable() {
 	lc = cus.show();
@@ -82,15 +81,15 @@ public class CustomerFrame extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblName = new JLabel("Name");
+		JLabel lblName = new JLabel("Nama");
 		lblName.setBounds(32, 47, 46, 14);
 		panel.add(lblName);
 		
-		JLabel lblPhone = new JLabel("Phone");
+		JLabel lblPhone = new JLabel("Email");
 		lblPhone.setBounds(32, 75, 83, 14);
 		panel.add(lblPhone);
 		
-		JLabel lblAddress = new JLabel("Address");
+		JLabel lblAddress = new JLabel("Alamat");
 		lblAddress.setBounds(32, 103, 83, 14);
 		panel.add(lblAddress);
 		
@@ -99,10 +98,10 @@ public class CustomerFrame extends JFrame {
 		panel.add(txtName);
 		txtName.setColumns(10);
 		
-		txtPhone = new JTextField();
-		txtPhone.setColumns(10);
-		txtPhone.setBounds(111, 72, 326, 20);
-		panel.add(txtPhone);
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(111, 72, 326, 20);
+		panel.add(txtEmail);
 		
 		txtAddress = new JTextField();
 		txtAddress.setColumns(10);
@@ -112,31 +111,35 @@ public class CustomerFrame extends JFrame {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Customer customer = new Customer();
-				customer.setName(txtName.getText());
-				customer.setPhone(txtPhone.getText());
-				customer.setAddress(txtAddress.getText());
+				Customer customer = new CustomerBuilder()
+				.setNama(txtName.getText())
+				.setEmail(txtEmail.getText())
+				.setAlamat(txtAddress.getText())
+				.setHp(txtHp.getText())
+				.build();
 				cus.save(customer);
 				reset();
 				loadTable();
 			}
 		});
-		btnSave.setBounds(111, 142, 74, 23);
+		btnSave.setBounds(111, 167, 74, 23);
 		panel.add(btnSave);
 		
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Customer customer = new Customer();
-				customer.setName(txtName.getText());
-				customer.setPhone(txtPhone.getText());
-				customer.setAddress(txtAddress.getText());
-				customer.setId(id);
+				Customer customer = new CustomerBuilder()
+				.setNama(txtName.getText())
+				.setEmail(txtEmail.getText())
+				.setAlamat(txtAddress.getText())
+				.setHp(txtHp.getText())
+				.setId(id)
+				.build();
 				cus.update(customer);
 				reset();
 				loadTable();
 			}});
-		btnUpdate.setBounds(195, 142, 74, 23);
+		btnUpdate.setBounds(195, 167, 74, 23);
 		panel.add(btnUpdate);	
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
@@ -148,7 +151,7 @@ public class CustomerFrame extends JFrame {
 					}else {
 					JOptionPane.showMessageDialog(null, "Silahkan pilih data yang akan di hapus");
 					}}});
-		btnDelete.setBounds(279, 142, 74, 23);
+		btnDelete.setBounds(279, 167, 74, 23);
 		panel.add(btnDelete);
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
@@ -156,8 +159,17 @@ public class CustomerFrame extends JFrame {
 				reset();
 			}
 		});
-		btnCancel.setBounds(363, 142, 74, 23);
+		btnCancel.setBounds(363, 167, 74, 23);
 		panel.add(btnCancel);
+		
+		JLabel lblPhone_1 = new JLabel("No. Hp");
+		lblPhone_1.setBounds(32, 132, 83, 14);
+		panel.add(lblPhone_1);
+		
+		txtHp = new JTextField();
+		txtHp.setColumns(10);
+		txtHp.setBounds(111, 128, 326, 20);
+		panel.add(txtHp);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 223, 475, 208);
@@ -174,8 +186,9 @@ public class CustomerFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				id = tableCustomers.getValueAt(tableCustomers.getSelectedRow(),0).toString();
 				txtName.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(), 1).toString()); 
-				txtPhone.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),2).toString()); 
+				txtEmail.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),2).toString()); 
 				txtAddress.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),3).toString());
+				txtHp.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(), 4).toString());
 				
 			}
 		});
@@ -185,7 +198,7 @@ public class CustomerFrame extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Name", "Phone", "Address"
+				"ID", "Nama", "Email", "Alamat", "Hp"
 			}
 		));
 		
@@ -193,6 +206,8 @@ public class CustomerFrame extends JFrame {
 	}
 	public void reset() {
 		txtName.setText("");
-		txtPhone.setText("");
-		txtAddress.setText("");}}
+		txtEmail.setText("");
+		txtAddress.setText("");
+		txtHp.setText("");}	
+}
 

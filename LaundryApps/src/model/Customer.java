@@ -1,38 +1,35 @@
 package model;
 
 public class Customer {
-	String id, name, phone, address;
-
+	private String id;
+	private String nama;
+	private String email;
+	private String alamat;
+	private String hp;
+	
+	public Customer(String id, String nama,String email, String alamat, String hp) {
+		this.id=id;
+		this.nama=nama;
+		this.email=email;
+		this.alamat=alamat;
+		this.hp=hp;
+		
+		
+	}
 	public String getId() {
 		return id;
 	}
-
-	public void setId(String id) {
-		this.id = id;
+	public String getNama() {
+		return nama;
 	}
-
-	public String getName() {
-		return name;
+	public String getEmail() {
+		return email;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public String getAlamat() {
+		return alamat;
 	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public String getHp() {
+		return hp;
 	}
 	
 }

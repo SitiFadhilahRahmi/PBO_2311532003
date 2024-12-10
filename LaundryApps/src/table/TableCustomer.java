@@ -6,7 +6,7 @@ import java.util.*;
 
 public class TableCustomer extends AbstractTableModel {
 	List<Customer> ls;
-	private String[] columNames = {"ID", "Name", "Phone", "Address"};
+	private String[] columNames = {"ID", "Nama", "Email", "Alamat","Hp"};
 	public TableCustomer(List<Customer> ls) {
 		this.ls=ls;
 	}
@@ -16,7 +16,7 @@ public class TableCustomer extends AbstractTableModel {
 	}
 	@Override
 	public int getColumnCount() {
-		return 4;
+		return 5;
 	}
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
@@ -24,11 +24,13 @@ public class TableCustomer extends AbstractTableModel {
 		case 0:
 			return ls.get(rowIndex).getId();
 		case 1:
-			return ls.get(rowIndex).getName();
+			return ls.get(rowIndex).getNama();
 		case 2:
-			return ls.get(rowIndex).getPhone();
+			return ls.get(rowIndex).getEmail();
 		case 3:
-			return ls.get(rowIndex).getAddress();
+			return ls.get(rowIndex).getAlamat();
+		case 4:
+			return ls.get(rowIndex).getHp();
 		default:
 			return null;
 		}

@@ -58,14 +58,32 @@ public class MainFrame extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnLayanan = new JButton("LAYANAN");
+		btnLayanan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					new LayananFrame().setVisible(true);
+					dispose();
+			}
+		});
 		btnLayanan.setBounds(366, 65, 124, 77);
 		contentPane.add(btnLayanan);
 		
 		JButton btnPelanggan = new JButton("PELANGGAN");
+		btnPelanggan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					new CustomerFrame().setVisible(true);
+					dispose();
+			}
+		});
 		btnPelanggan.setBounds(534, 65, 124, 77);
 		contentPane.add(btnPelanggan);
 		
 		JButton btnPengguna = new JButton("PENGGUNA");
+		btnPengguna.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					new UserFrame().setVisible(true);
+					dispose();
+			}
+		});
 		btnPengguna.setBounds(121, 161, 124, 77);
 		contentPane.add(btnPengguna);
 		
