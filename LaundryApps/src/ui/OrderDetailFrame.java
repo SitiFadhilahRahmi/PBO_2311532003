@@ -36,9 +36,9 @@ public class OrderDetailFrame extends JFrame {
 	private JTextField txtHarga;
 	private JTextField txtJumlah;
 	private JTextField txtTotal;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField txtTrx;
+	private JTextField txtTanggal;
+	private JTextField txtTanggalPengembalian;
 
 	/**
 	 * Launch the application.
@@ -60,6 +60,7 @@ public class OrderDetailFrame extends JFrame {
 	LayananRepo cus = new LayananRepo();
 	List<Layanan> lc;
 	public String id;
+	private JTextField txtPelanggan;
 	
 	public void loadTable() {
 	lc = cus.show();
@@ -132,52 +133,53 @@ public class OrderDetailFrame extends JFrame {
 		lblNewLabel_1_1_8.setBounds(10, 353, 138, 14);
 		panel_1.add(lblNewLabel_1_1_8);
 		
-		JButton btnNewButton_1 = new JButton("Simpan");
-		btnNewButton_1.setBounds(10, 407, 76, 23);
-		panel_1.add(btnNewButton_1);
+		JButton btnSimpan = new JButton("Simpan");
+		btnSimpan.setBounds(10, 407, 76, 23);
+		panel_1.add(btnSimpan);
 		
-		JButton btnBatal_1 = new JButton("Batal");
-		btnBatal_1.setBounds(109, 407, 76, 23);
-		panel_1.add(btnBatal_1);
+		JButton btnBatalOrder = new JButton("Batal");
+		btnBatalOrder.setBounds(109, 407, 76, 23);
+		panel_1.add(btnBatalOrder);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(6, 25, 194, 20);
-		panel_1.add(textField_3);
-		textField_3.setColumns(10);
+		txtTrx = new JTextField();
+		txtTrx.setBounds(6, 25, 194, 20);
+		panel_1.add(txtTrx);
+		txtTrx.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(6, 131, 194, 20);
-		panel_1.add(textField_4);
+		txtTanggal = new JTextField();
+		txtTanggal.setColumns(10);
+		txtTanggal.setBounds(6, 131, 194, 20);
+		panel_1.add(txtTanggal);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(6, 179, 194, 20);
-		panel_1.add(textField_5);
+		txtTanggalPengembalian = new JTextField();
+		txtTanggalPengembalian.setColumns(10);
+		txtTanggalPengembalian.setBounds(6, 179, 194, 20);
+		panel_1.add(txtTanggalPengembalian);
 		
-		JComboBox cbPelanggan = new JComboBox();
-		cbPelanggan.setBounds(6, 73, 194, 22);
-		panel_1.add(cbPelanggan);
+		JComboBox cbStatus = new JComboBox();
+		cbStatus.setModel(new DefaultComboBoxModel(new String[] {"Dipesan", "Diproses", "Siap Jemput", "Selesai"}));
+		cbStatus.setBounds(6, 226, 194, 22);
+		panel_1.add(cbStatus);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Dipesan", "Diproses", "Siap Jemput", "Selesai"}));
-		comboBox_1.setBounds(6, 226, 194, 22);
-		panel_1.add(comboBox_1);
+		JComboBox cbPembayaran = new JComboBox();
+		cbPembayaran.setModel(new DefaultComboBoxModel(new String[] {"Cash", "Transfer", "QRIS"}));
+		cbPembayaran.setBounds(6, 320, 194, 22);
+		panel_1.add(cbPembayaran);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Cash", "Transfer", "QRIS"}));
-		comboBox_2.setBounds(6, 320, 194, 22);
-		panel_1.add(comboBox_2);
-		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Belum Bayar", "Sudah Bayar"}));
-		comboBox_3.setBounds(6, 366, 194, 22);
-		panel_1.add(comboBox_3);
+		JComboBox cbStatusPembayaran = new JComboBox();
+		cbStatusPembayaran.setModel(new DefaultComboBoxModel(new String[] {"Belum Bayar", "Sudah Bayar"}));
+		cbStatusPembayaran.setBounds(6, 366, 194, 22);
+		panel_1.add(cbStatusPembayaran);
 		
 		JLabel lblNewLabel_2 = new JLabel("0,00");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_2.setBounds(10, 281, 46, 14);
 		panel_1.add(lblNewLabel_2);
+		
+		txtPelanggan = new JTextField();
+		txtPelanggan.setColumns(10);
+		txtPelanggan.setBounds(6, 75, 194, 20);
+		panel_1.add(txtPelanggan);
 		
 		JLabel lblNewLabel = new JLabel("Layanan");
 		lblNewLabel.setBounds(230, 11, 46, 14);
@@ -205,13 +207,13 @@ public class OrderDetailFrame extends JFrame {
 		panel_2.add(txtHarga);
 		txtHarga.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Simpan");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnSimpanDetail = new JButton("Simpan");
+		btnSimpanDetail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
 			}
 		});
-		btnNewButton.setBounds(10, 104, 76, 23);
-		panel_2.add(btnNewButton);
+		btnSimpanDetail.setBounds(10, 104, 76, 23);
+		panel_2.add(btnSimpanDetail);
 		
 		JButton btnUbah = new JButton("Ubah");
 		btnUbah.setBounds(96, 104, 76, 23);
@@ -311,5 +313,4 @@ public class OrderDetailFrame extends JFrame {
             txtTotal.setText("0");
         }
 	}
-    
 }
