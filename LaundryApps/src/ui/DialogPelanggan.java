@@ -12,10 +12,13 @@ import javax.swing.table.DefaultTableModel;
 
 import DAO.CustomerRepo;
 import listener.DataListener;
+import model.Customer;
 
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+import javax.swing.JLabel;
 
 public class DialogPelanggan extends JDialog {
 	private DataListener listener;
@@ -31,7 +34,7 @@ public class DialogPelanggan extends JDialog {
 		this.listener = listener;
 		setModal(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		setSize(450,249);
+
 		setLocationRelativeTo(null);
 		setTitle("Data Pelanggan");
 		getContentPane().setLayout(null);
@@ -56,6 +59,9 @@ public class DialogPelanggan extends JDialog {
 	 * Create the dialog.
 	 */
 	public DialogPelanggan() {
+		
+		JLabel txtPelanggan = new JLabel("");
+		getContentPane().add(txtPelanggan, BorderLayout.SOUTH);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

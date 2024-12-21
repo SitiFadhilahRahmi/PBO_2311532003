@@ -12,7 +12,9 @@ import javax.swing.table.DefaultTableModel;
 
 import DAO.LayananRepo;
 import DAO.OrderDetailRepo;
+import DAO.OrderRepo;
 import model.Layanan;
+import model.Order;
 import model.OrderDetail;
 import table.TableLayanan;
 import table.TableOrderDetail;
@@ -45,6 +47,10 @@ public class OrderDetailFrame extends JFrame {
 	private JTextField txtTrx;
 	private JTextField txtTanggal;
 	private JTextField txtTanggalPengambilan;
+	private JComboBox cbStatus;
+	private JComboBox cbStatusPembayaran;
+	private JComboBox cbPembayaran;
+	JLabel txtTotalOrder;
 
 	/**
 	 * Launch the application.
@@ -156,6 +162,28 @@ public class OrderDetailFrame extends JFrame {
 		panel_1.add(lblNewLabel_1_1_8);
 		
 		JButton btnSimpanOrder = new JButton("Simpan");
+		btnSimpanOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderRepo order_repo=new OrderRepo();	
+				if(txt_pelanggan !="") {
+					Order order = new Order();
+					order.setId(txtTrx.getText());
+					order.setId_pelanggan(txt_pelanggan);
+					order.setTanggal(txtTanggal.getText());
+					order.setTanggal_pengembalian(txtTanggalPengambilan.getText());
+					order.setStatus(cbStatus.getSelectedItem().toString());
+					order.setStatus_pembayaran(cbStatusPembayaran.getSelectedItem().toString());
+					order.setPembayaran(cbPembayaran.getSelectedItem().toString());
+					order.setPembayaran(cbStatusPembayaran.getSelectedItem().toString());
+					order.setTotal(txtTotalOrder.getText());
+					order_repo.save(order);
+					JOptionPane.showMessageDialog(null, "Order Berhasil Disimpan");
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "Silahkan Pilih Pelanggan Terlebih Dahulu");
+				}
+			}
+		});
 		btnSimpanOrder.setBounds(10, 407, 76, 23);
 		panel_1.add(btnSimpanOrder);
 		
